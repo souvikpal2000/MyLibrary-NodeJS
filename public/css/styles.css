@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Piazzolla:wght@200;300;400;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Piazzolla', serif;
+}
+:root{
+    --main-bg: #1e272e;
+    --main-color: #0097e6;
+    --book-cover-width: 120px;
+    --book-cover-width-large: 270px;
+    --book-cover-aspect-ratio: 1;
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.addNewBlog, .addNewBook, .saveButton{
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    box-shadow: 0 8px 6px -6px #000;
+}
+.addNewBlog:hover, .addNewBook:hover, .saveButton:hover{
+    box-shadow: 0 8px 6px -6px var(--main-color);
+}
+.mainMenu{
+    background-color: var(--main-bg);
+}
+.navbar{
+    color: #fff;
+    background-color: var(--main-bg);
+    padding: 1rem;
+}
+.navbar a{
+    color: #fff;
+}
+.navbar a:hover{
+    color: var(--main-color);
+}
+.mainHeader{
+    margin-top: 100px;
+}
+.main-header-left p{
+    font-size: 1.5rem;
+}
+.main-header-left h1{
+    font-size: 2rem;
+    margin: 1rem 0 3rem 0;
+    text-transform: capitalize;
+}
+.textColor{
+    color: var(--main-color);
+}
+.main-header-left button{
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    box-shadow: 0 8px 6px -6px #000;
+}
+.main-header-left button:hover{
+    box-shadow: 0 8px 6px -6px var(--main-color);
+}
+.carousel-control-prev, .carousel-control-next {
+    display: none;
+}
+footer{
+    width: 100%;
+    background-color: var(--main-bg);
+    margin-top: auto;
+}
+footer p{
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    line-height: 4rem;
+    font-size: 1rem;
+}
+.errimg img{
+    width: 55rem;
+}
+.error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.loginImg{
+    width: 400px;
+}
+.loginForm{
+    margin-top: 5rem;
+}
+#basic-addon1{
+    color: var(--main-color);
+}
+.message{
+    display: flex;
+    justify-content: center;
+}
+.alertBox{
+    display: flex;
+    justify-content: center;
+}
+.alert{
+    margin-top: -2.5rem;
+}
+.welcome{
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+.blog{
+    margin-top: auto;
+}
+.blogImage{
+    width: 350px;
+}
+.viewBook{
+    margin-top: auto;
+}
+.viewBookImg{
+    width: 350px;
+    border-radius: 1rem;
+}
+.newBlog{
+    margin-top: -4rem;
+}
+.bookImg{
+    width: 350px;
+}
+textarea{
+    resize: none;
+}
+.newBook{
+    margin-top: -3.5rem;
+}
+.formButton{
+    display: flex;
+    justify-content: center;
+}
+.coverPic{
+    width: 300px;
+}
+.book-cover {
+    width: var(--book-cover-width);
+    height: calc(var(--book-cover-width) / var(--book-cover-aspect-ratio));
+    border-radius: 1rem;
+}
+.book-cover-large {
+    --book-cover-width: var(--book-cover-width-large);
+    border-radius: 1rem;
+}
+.book-grid {
+    display: grid;
+    justify-content: center;
+    grid-gap: 5rem;
+    grid-template-columns: repeat(auto-fill, var(--book-cover-width));
+}
+.book-grid-large {
+    grid-template-columns: repeat(auto-fill, var(--book-cover-width-large));
+}
+@media (max-width: 768px) {
+    .main-header-left{
+        height: auto;
+        margin-top: -2rem;
+    }
+    .main-header-right{
+        height: auto;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+    .tempForm{
+        width: auto;
+    }
+    .error{
+        height: auto;
+        margin-top: 5rem;
+    }
+    .registerForm{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .loginForm{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .registerImage{
+        display: flex;
+        justify-content: center;
+        margin-top: -3.5rem;
+    }
+    .loginImage{
+        margin-top: -4rem;
+    }
+    .welcomeImg{
+        width: 300px;
+    }
+    .blogImg{
+        display: flex;
+        justify-content: center;
+    }
+    .coverPic{
+        width: 400px;
+    }
+}

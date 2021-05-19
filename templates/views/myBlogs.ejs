@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>MyBlogs</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-3 mb-3">
+        <a href="/addblog"><button class="addNewBlog">Add Blog</button></a>
+ 
+        <% blogs.forEach(blog => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= blog.blogTitle %></h4>
+                    <div class="card-subtitle text-muted mb-2">
+                        <%= blog.createdAt.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-2">
+                        <%= blog.blogDesc %>
+                    </div>
+                    <a href="/viewblog/<%= blog._id %>"><button class="btn btn-primary">Read More</button></a>
+                    <a href="/editblog/<%= blog._id %>"><button class="btn btn-info">Edit</button></a>
+                    <form action='/blogs/<%= blog._id %>' method="POST" class="d-inline">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                 </div>
+             </div>
+        <% }) %>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

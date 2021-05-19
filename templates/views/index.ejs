@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>MyLibrary</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <% if (welcome == "Welcome") { %>
+      <div class="welcome">
+        <img src="images/welcome.jpg" alt="welcome" class="welcomeImg">
+      </div>
+    <%} else { %>
+      <div class="container-fluid mainHeader">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 col-12 main-header-left">
+                        <p>Welcome to Our Library App</p>
+                        <h1>This is an Open Source Library where you can get The Latest <span class="textColor"> Books & Blogs </span></h1>
+                        <a href="/books"><button>Check Books</button></a>
+                    </div>
+                    <div class="col-md-6 col-12 main-header-right">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img src="/images/library01.jpg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="/images/library02.jpg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="/images/library03.jpg" class="d-block w-100" alt="...">
+                              </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>  
+    <% } %>
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

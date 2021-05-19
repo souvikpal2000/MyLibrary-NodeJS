@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>MyBooks</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-3">
+        <a href="/addbook"><button class="addNewBook">Add Book</button></a>
+ 
+        
+        <div class="allBooks book-grid book-grid-large mt-3 mb-3">
+            <% books.forEach(book => { %>
+                <div class="mb-2">
+                    <div class="bookImage">
+                        <img src="<%= book.covPicPath%>" class="img-fluid d-block book-cover book-cover-large" alt="...">
+                    </div>
+                    <div class="bookDetails">
+                        <h4 class="card-title"><%= book.bookTitle %></h4>
+                        <div class="card-subtitle text-muted mb-2">
+                            <%= book.createdAt.toLocaleDateString() %>
+                        </div>
+                        <div class="mx-auto">
+                            <a href="/viewbook/<%= book.id %>" class="btn btn-primary">View</a>
+                            <form action='/books/<%= book.id %>' method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            <% }) %>              
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

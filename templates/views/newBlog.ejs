@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>MyBlogs</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container-fluid mainHeader">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 col-12 main-header-left">
+                        <img src="/images/writeblog.png" class="img-fluid d-block blogImage" alt="...">
+                    </div>
+                    <div class="col-md-6 col-12 main-header-right newBlog">
+                        <% if(blog) { %>
+                                <form action="/myblogs/<%= blog._id %>" method="POST">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input required value="<%= blog.blogTitle %>" type="text" name="title" id="title" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea name="description" id="description" class="form-control"><%= blog.blogDesc %></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="markdown">Markdown</label>
+                                        <textarea required rows="5" name="markdown" id="markdown" class="form-control"><%= blog.blogMarkdown %></textarea>
+                                    </div>
+                                    <button type="submit" class="saveButton">Save</button>
+                                </form>
+                        <% } else { %>
+                                <form action="/myblogs" method="POST">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input required type="text" name="title" id="title" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea name="description" id="description" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="markdown">Markdown</label>
+                                        <textarea required rows="5" name="markdown" id="markdown" class="form-control"></textarea>
+                                    </div>
+                                    <button type="submit" class="saveButton">Save</button>
+                                </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

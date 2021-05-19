@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>MyBooks</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container-fluid mainHeader">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 col-12 main-header-left">
+                        <img src="/images/bookImg.jpg" class="img-fluid d-block bookImg" alt="...">
+                    </div>
+                    <div class="col-md-6 col-12 main-header-right newBook">
+                        <form action="/mybooks" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input required type="text" name="bookTitle" id="title" class="form-control" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea name="bookDesc" id="description" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Cover Picture</label>
+                                <input class="form-control" type="file" name="coverPic" id="coverPic">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Book</label>
+                                <input class="form-control" type="file" name="bookDoc" id="bookDocs">
+                            </div>
+                            <button type="submit" class="saveButton">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

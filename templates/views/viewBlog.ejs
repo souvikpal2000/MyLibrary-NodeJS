@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>MyBlogs</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container-fluid mainHeader blog">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 col-12 main-header-right blogImg">
+                        <img src="/images/blogImg.jpg" class="img-fluid d-block blogImage" alt="...">
+                    </div>
+
+                    <div class="col-md-6 col-12 main-header-left mt-auto mb-4">
+                        <h4 class="mb-2"><%= blog.blogTitle %></h4>
+                        <div class="text-muted mb-2">
+                            <%= blog.createdAt.toLocaleDateString() %>
+                        </div>
+                        <div class="card mt-3 mb-3">
+                            <div class="card-body">
+                                <%- blog.blogMarkdown %>
+                            </div> 
+                        </div>
+                        <a href="/editblog/<%= blog._id %>"><button class="btn btn-info">Edit</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>Register</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container-fluid mainHeader">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 col-12 main-header-right registerImage">
+                        <img src="images/register.png" class="img-fluid d-block w-50" alt="...">
+                    </div>
+
+                    <div class="col-md-6 col-12 main-header-left registerForm">
+
+                        <% if(message) { %>
+                            <div class="alertBox">
+                                <div class="alert alert-danger col-12 col-md-8" role="alert">
+                                    <%= message %>
+                                    <a type="button" class="close" data-dismiss="alert" aria-label="Close"> 
+                                        <span aria-hidden="true">&times;</span>
+                                    </a>
+                                </div>
+                            </div>
+                        <% } %>
+
+                        <form method="POST" action="/register">
+                            <div class="form-group row justify-content-center">
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Full Name</span>
+                                        </div>
+                                        <input type="text" name="name" id="name" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-default" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row justify-content-center">
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Email</span>
+                                        </div>
+                                        <input type="email" name="email" id="email" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-default" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="form-group row justify-content-center">
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Password</span>
+                                        </div>
+                                        <input type="password" name="password" id="password" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-default">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row justify-content-center">
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+                                        </div>
+                                        <input type="password" name="conPassword" id="conPassword" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-default">
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="form-group row justify-content-center">
+                                <div>
+                                    <button>Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>
