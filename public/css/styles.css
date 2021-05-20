@@ -166,6 +166,9 @@ textarea{
 .book-grid-large {
     grid-template-columns: repeat(auto-fill, var(--book-cover-width-large));
 }
+.comment{
+    margin-top: 10rem;
+}
 @media (max-width: 768px) {
     .main-header-left{
         height: auto;
@@ -208,5 +211,8 @@ textarea{
     }
     .coverPic{
         width: 400px;
+    }
+    .comment{
+        margin-top: 4rem;
     }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/headerLinks') %>
+    <title>MyBlogs</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-3 mb-3">
+        <a href="/addcomment/<%= email %>/<%= bookId %>"><button class="addNewBlog">Add Comment</button></a>
+ 
+        <% comments.forEach(comment => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="card-subtitle text-muted mb-2">
+                        <%= comment.createdAt.toLocaleDateString() %>
+                    </div>
+                    <div class="card-subtitle text-muted mb-2">
+                        <%= comment.email %>
+                    </div>
+                    <div class="card-text mb-2">
+                        <%= comment.desc %>
+                    </div>
+                 </div>
+             </div>
+        <% }) %>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+<%- include('../partials/footerLinks') %>
+</html>

@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const cookieParser = require('cookie-parser');
 const multer = require("multer");
 require('dotenv').config();
-const {Author, Book, Blog, Token} = require("./models/author");
+const {Author, Book, Blog, Token, Comment} = require("./models/author");
 const auth = require("./middleware/auth");
 //const { nextTick } = require("process");
 
@@ -418,6 +418,49 @@ app.get("/blogs", async (req,res) => {
         return res.render("blogs", {status: "loggedIn", blogs: allBlogs});
     }
     res.render("blogs", {status: "notLoggedIn", blogs: allBlogs});
+});
+
+app.get("/comment/:email/:id", async (req,res) => {
+    const bookId = req.params.id;
+    const userEmail = req.params.email;
+    const bookData = await Author.find({ email: userEmail }, { 'books': { $elemMatch: { "_id": bookId } } });
+    //console.log(bookData[0].books[0].comments);
+    bookData[0].books[0].comments.sort((a, b) => b.createdAt - a.createdAt);
+    if(req.cookies.email){
+        return res.render("comment", {status:"loggedIn", email: userEmail, bookId: bookId, comments: bookData[0].books[0].comments});
+    }
+    res.render("comment", {status:"notLoggedIn", email: userEmail, bookId: bookId, comments: bookData[0].books[0].comments});
+});
+
+app.get("/addcomment/:email/:id", (req,res) => {
+    const bookId = req.params.id;
+    const userEmail = req.params.email;
+    if(req.cookies.email){
+        return res.render("newComment", {status: "loggedIn", email: userEmail, bookId: bookId});
+    }
+    res.render("newComment", {status: "notLoggedIn", email: userEmail, bookId: bookId});
+});
+
+app.post("/addcomment/:email/:id", async (req,res) => {
+    const commentData = new Comment({
+        email: req.body.email,
+        desc: req.body.desc
+    });
+    const bookId = req.params.id;
+    const userEmail = req.params.email;
+    
+    const author = await Author.findOne({ email: userEmail });
+   
+    const restBooks = author.books.filter((book) => book._id != bookId);
+    const targetBook = author.books.filter((book) => book._id == bookId);
+    
+    targetBook[0].comments.push(commentData);
+    restBooks.push(...targetBook);
+    //console.log(restBooks[0].comments);
+    author.books = restBooks;
+    await author.save();
+
+    return res.redirect(`/comment/${userEmail}/${bookId}`);
 });
 
 //Use to Delete the Complete Database (!!Danger)
