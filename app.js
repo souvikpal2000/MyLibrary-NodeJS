@@ -10,7 +10,7 @@ const multer = require("multer");
 require('dotenv').config();
 const {Author, Book, Blog, Token} = require("./models/author");
 const auth = require("./middleware/auth");
-const { nextTick } = require("process");
+//const { nextTick } = require("process");
 
 const staticPath = path.join(__dirname, "public");
 const viewsPath = path.join(__dirname, "templates/views");
@@ -43,14 +43,17 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
+//Use to Render the Home Page
 app.get("/", (req,res) => {
     res.render("index", {status: "notLoggedIn", welcome: null});
 });
 
+//Use to Render the Register Page
 app.get("/register", (req,res) => {
     res.render("register", {message: null, status: "notLoggedIn"});
 });
 
+//Use to Add Data of Author to Database (POST Route)
 app.post("/register", async (req,res) => {
     try{
         if(req.body.password != req.body.conPassword)
@@ -74,10 +77,12 @@ app.post("/register", async (req,res) => {
     }
 });
 
+//Use to render the Login Page
 app.get("/login", (req,res) => {
     res.render("login", {message: null, status: "notLoggedIn"});
 });
 
+//Use to Login into Particular User (POST Route)
 app.post("/login", async (req,res) => {
     try{
         const email = req.body.email;
@@ -106,6 +111,7 @@ app.post("/login", async (req,res) => {
     }
 });
 
+//Use to Logout 
 app.get("/logout", auth, async(req,res) => {
     try{    
         res.clearCookie("jwt");
@@ -116,6 +122,7 @@ app.get("/logout", auth, async(req,res) => {
     }
 });
 
+//Use to render MyBooks Page in Sorted Way (Descending Order) (Can be Accessible by LoggedIn Author)
 app.get("/mybooks", auth, async (req,res) => {
     const authorData = await Author.findOne({email:req.cookies.email});
     authorData.books.sort(compareByCreatedAt);
@@ -127,10 +134,12 @@ app.get("/mybooks", auth, async (req,res) => {
     }
 });
 
+//Use to render newBook Page where we can Add Book 
 app.get("/addbook", auth, (req,res) => {
     res.render("newBook", {status:"loggedIn", book: null});
 });
 
+//Use to Add Book to the Database for that particular LoggedIn Author (POST Route)
 var cpUpload = upload.fields([{name: 'coverPic', maxCount: 1}, {name: 'bookDoc', maxCount: 1}])
 app.post("/mybooks", unique, cpUpload, async (req,res) => {
     try{
@@ -152,6 +161,7 @@ app.post("/mybooks", unique, cpUpload, async (req,res) => {
     }
 });
 
+//Use to Delete Own Book, can be Deleted by that LoggedIn Author (POST Route)
 app.post("/books/:id", async (req,res) => {
     try {
         const bookID = req.params.id;
@@ -177,6 +187,7 @@ app.post("/books/:id", async (req,res) => {
     }
 });
 
+//Use to View Own Book by that LoggedIn Author
 app.get("/viewbook/:id", auth, async (req,res) => {
     try{
         const bookId = req.params.id;
@@ -190,6 +201,7 @@ app.get("/viewbook/:id", auth, async (req,res) => {
     }
 });
 
+//Use to View Book by any User
 app.get("/viewbook/:email/:id", async (req,res) => {
     try{
         const bookId = req.params.id;
@@ -205,6 +217,7 @@ app.get("/viewbook/:email/:id", async (req,res) => {
     }
 });
 
+//Use to Download Own Book by LoggedIn Author
 app.get("/downloadbook/:id", auth, async (req,res) => {
     try{
         const bookId = req.params.id;
@@ -220,6 +233,7 @@ app.get("/downloadbook/:id", auth, async (req,res) => {
     }
 });
 
+//Use to Download Book by any User
 app.get("/downloadbook/:email/:id", async (req,res) => {
     try{
         const bookId = req.params.id;
@@ -235,6 +249,7 @@ app.get("/downloadbook/:email/:id", async (req,res) => {
     }
 });
 
+//Use to render MyBlogs Page in Sorted Way (Descending Order) (Can be Accessible by LoggedIn Author)
 app.get("/myblogs", auth, async (req,res) => {
     try{
         const authorData = await Author.findOne({email:req.cookies.email});
@@ -250,10 +265,12 @@ app.get("/myblogs", auth, async (req,res) => {
     }
 });
 
+//Use to render newBlog Page where we can Add Blog
 app.get("/addblog", auth, (req,res) => {
     res.render("newBlog", {status:"loggedIn", blog: null});
 });
 
+//Use to Delete Own Blog by LoggedIn Author
 app.post("/blogs/:id", async (req,res) => {
     try {
         const blogID = req.params.id;
@@ -265,6 +282,7 @@ app.post("/blogs/:id", async (req,res) => {
     }
 });
 
+//Use to Add Blog to Database by LoggedIn User
 app.post("/myblogs", auth,  async (req,res) => {
     try{
         const authorBlog = new Blog({
@@ -281,6 +299,7 @@ app.post("/myblogs", auth,  async (req,res) => {
     }
 });
 
+//Use to Edit Own Blog by LoggedIn Author
 app.post("/myblogs/:id", auth,  async (req,res) => {
     try{
         const blogId = req.params.id;
@@ -298,6 +317,7 @@ app.post("/myblogs/:id", auth,  async (req,res) => {
     }
 });
 
+//Use to View Own Blog by LoggedIn Author
 app.get("/viewblog/:id", auth, async (req,res) => {
     try{
         const blogId = req.params.id;
@@ -310,6 +330,7 @@ app.get("/viewblog/:id", auth, async (req,res) => {
     }
 });
 
+//Use to View Blog by Any User
 app.get("/viewblog/:email/:id", async (req,res) => {
     try{
         const blogId = req.params.id;
@@ -325,6 +346,7 @@ app.get("/viewblog/:email/:id", async (req,res) => {
     }
 });
 
+//Use to Render newBlog Page for Editing that particular Blog
 app.get("/editblog/:id", auth, async (req,res) => {
     try{
         const blogId = req.params.id;
@@ -337,6 +359,7 @@ app.get("/editblog/:id", auth, async (req,res) => {
     }
 });
 
+//Use to render Books Page in Sorted Way (Descending Order) (Accessible to all User)
 app.get("/books", async (req,res) => {
     const allAuthors = await Author.find();
     const allBooks = [];
@@ -367,6 +390,7 @@ app.get("/books", async (req,res) => {
     res.render("books", {status: "notLoggedIn", books: allBooks});
 });
 
+//Use to render Blogs Page in Sorted Way (Descending Order) (Accessible to all User)
 app.get("/blogs", async (req,res) => {
     const allAuthors = await Author.find();
     const allBlogs = [];
@@ -396,11 +420,13 @@ app.get("/blogs", async (req,res) => {
     res.render("blogs", {status: "notLoggedIn", blogs: allBlogs});
 });
 
+//Use to Delete the Complete Database (!!Danger)
 app.get("/delete",(req,res) => {
     Author.deleteMany().then(() => res.send("All Author Deleted"))
     .catch((err) => res.send(err));
 });
 
+//Use to render 404Error Page when User want to access unknown Route
 app.get('*', (req,res) => {
 	res.status(404).render("404Error", { errMessage: 'Oops! Page not Found'});
 });

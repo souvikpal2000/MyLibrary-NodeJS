@@ -19,6 +19,9 @@
                         <div class="card-subtitle text-muted mb-2">
                             <%= book.createdAt.toLocaleDateString() %>
                         </div>
+                        <div class="card-subtitle text-muted mb-2">
+                            <b>(By <%= book.author %>)</b>
+                        </div>
                         <div class="mx-auto">
                             <a href="/viewbook/<%= book.email %>/<%= book._id %>" class="btn btn-primary">View</a>
                         </div>
