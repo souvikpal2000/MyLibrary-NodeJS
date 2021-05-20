@@ -8,9 +8,13 @@
     <%- include('../partials/navbar') %>
 
     <div class="container mt-3">
+        <div class="input-group mb-3 col-12 col-md-6 mx-auto">
+            <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-search search"></i></span>
+            <input type="text" id="myInput" onkeyup="findBook()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
         <div class="allBooks book-grid book-grid-large mt-3 mb-3">
             <% books.forEach(book => { %>
-                <div class="mb-2">
+                <div class="mb-2 book">
                     <div class="bookImage">
                         <img src="<%= book.covPicPath%>" class="img-fluid d-block book-cover book-cover-large" alt="...">
                     </div>

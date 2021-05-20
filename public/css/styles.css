@@ -169,6 +169,9 @@ textarea{
 .comment{
     margin-top: 10rem;
 }
+.search{
+    color: var(--main-color);
+}
 @media (max-width: 768px) {
     .main-header-left{
         height: auto;
