@@ -8,8 +8,8 @@
 :root{
     --main-bg: #1e272e;
     --main-color: #0097e6;
-    --book-cover-width: 120px;
-    --book-cover-width-large: 270px;
+    --book-cover-width: 90px;
+    --book-cover-width-large: 240px;
     --book-cover-aspect-ratio: 1;
 }
 body{

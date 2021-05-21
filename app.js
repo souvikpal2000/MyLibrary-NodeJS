@@ -420,6 +420,7 @@ app.get("/blogs", async (req,res) => {
     res.render("blogs", {status: "notLoggedIn", blogs: allBlogs});
 });
 
+//Use to render Comment Page of that Particular Book which is Registered to Particular Email 
 app.get("/comment/:email/:id", async (req,res) => {
     const bookId = req.params.id;
     const userEmail = req.params.email;
@@ -432,6 +433,7 @@ app.get("/comment/:email/:id", async (req,res) => {
     res.render("comment", {status:"notLoggedIn", email: userEmail, bookId: bookId, comments: bookData[0].books[0].comments});
 });
 
+//Use to render Add Comment Page where any User can Add Comment of that Particular Book which is Registered to Particular Email
 app.get("/addcomment/:email/:id", (req,res) => {
     const bookId = req.params.id;
     const userEmail = req.params.email;
@@ -441,6 +443,7 @@ app.get("/addcomment/:email/:id", (req,res) => {
     res.render("newComment", {status: "notLoggedIn", email: userEmail, bookId: bookId});
 });
 
+//Use to Add Comment to that Particular Book which is Registered to Particular Email (POST Route)
 app.post("/addcomment/:email/:id", async (req,res) => {
     const commentData = new Comment({
         email: req.body.email,
