@@ -8,7 +8,8 @@ const auth = async (req, res, next) => {
         const author = await Author.findOne({_id:verifyAuthor._id});
         next();
     }catch(err){
-        res.status(401).render("index", {status: "notLoggedIn", welcome: null});
+        //res.status(401).render("index", {status: "notLoggedIn", welcome: null});
+        res.status(401).redirect("/");
     }
 }
 

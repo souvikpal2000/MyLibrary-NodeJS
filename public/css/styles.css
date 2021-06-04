@@ -218,4 +218,8 @@ textarea{
     .comment{
         margin-top: 4rem;
     }
+    .viewCoverImg{
+        display: flex;
+        justify-content: center;
+    }
 }

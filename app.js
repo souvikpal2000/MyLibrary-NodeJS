@@ -116,7 +116,8 @@ app.get("/logout", auth, async(req,res) => {
     try{    
         res.clearCookie("jwt");
         res.clearCookie("email");    
-        res.render("index", {status: "notLoggedIn", welcome: null});
+        //res.render("index", {status: "notLoggedIn", welcome: null});
+        res.redirect("/");
     } catch (err) {
         res.status(500).send(err);
     }
