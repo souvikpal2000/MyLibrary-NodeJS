@@ -1,1 +1,1 @@
-cover
+Book Cover Images are uploaded in this Directory
